@@ -1,0 +1,16 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "properties": { "name": "Puente Chiu" },
+        "geometry": { "type": "Point", "coordinates": [-90.36797, 15.46428] }
+      },
+      {
+        "type": "Feature",
+        "properties": { "name": "Rapifreno Cobán" },
+        "geometry": { "type": "Point", "coordinates": [-90.37239, 15.46554] }
+      }
+    ]
+  }
+  
