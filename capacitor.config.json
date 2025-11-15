@@ -1,0 +1,9 @@
+{
+    "appId": "com.lora.frontend",
+    "appName": "LoRa Frontend",
+    "webDir": "dist",
+    "server": {
+      "androidScheme": "https"
+    }
+  }
+  

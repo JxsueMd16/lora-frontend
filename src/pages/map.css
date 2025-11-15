@@ -76,3 +76,25 @@
   font-size: 14px;
   font-weight: 600;
 }
+
+.map-back-button {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 1000; /* por encima del mapa y controles */
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.9); /* tono oscuro tipo dashboard */
+  color: #e5e7eb;
+  border: 1px solid rgba(148, 163, 184, 0.7);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.map-back-button:hover {
+  background: rgba(15, 23, 42, 1);
+}

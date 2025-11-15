@@ -113,3 +113,4 @@ npx cap config
 - **Web Directory**: `dist` (se copia a `www` automáticamente)
 - **Plataforma**: Android (API nivel 23 mínimo)
 
+

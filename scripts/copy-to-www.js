@@ -19,3 +19,4 @@ fs.cpSync(distDir, wwwDir, { recursive: true });
 
 console.log('✓ Copiado dist a www');
 
+
