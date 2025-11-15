@@ -1,0 +1,21 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": { 
+        "name": "AOI Puente Chiu - Río Cahabón"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-90.37450, 15.46580],
+          [-90.36620, 15.46580],
+          [-90.36620, 15.46380],
+          [-90.37450, 15.46380],
+          [-90.37450, 15.46580]
+        ]]
+      }
+    }
+  ]
+}

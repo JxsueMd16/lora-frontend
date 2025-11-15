@@ -241,7 +241,24 @@ function RiskGauge({ readings }) {
     return 'Peligro';
   };
 
-  const needleAngle = -90 + (riskLevel * 1.8); // De -90° a 90°
+  // Ángulo para semicírculo: izquierda (180°) = seguro (100%), derecha (0°) = peligro (0%)
+  // En SVG: 0° = derecha, 180° = izquierda, -90° = arriba, 90° = abajo
+  // El arco va de 0° (derecha) a 180° (izquierda), pasando por -90° (arriba) en el medio
+  // Necesitamos mapear: 0 → 0°, 50 → -90°, 100 → 180°
+  // Usamos una función que sigue el arco superior del semicírculo
+  const normalizedLevel = riskLevel / 100; // 0 a 1
+  // Mapeo que va de 0° (derecha) a 180° (izquierda) pasando por -90° (arriba)
+  // Cuando normalizedLevel = 0.5, queremos -90° (arriba)
+  // Fórmula: angle = 180 * normalizedLevel, pero ajustado para que pase por -90° en el medio
+  // Alternativa: usar interpolación que va 0° → -90° → 180°
+  let needleAngle;
+  if (normalizedLevel <= 0.5) {
+    // De 0° a -90° (primera mitad: derecha → arriba)
+    needleAngle = normalizedLevel * 2 * -90; // 0 a -90
+  } else {
+    // De -90° a 180° (segunda mitad: arriba → izquierda)
+    needleAngle = -90 + ((normalizedLevel - 0.5) * 2 * 270); // -90 a 180
+  }
   const color = getColor(riskLevel);
 
   return (
@@ -255,7 +272,7 @@ function RiskGauge({ readings }) {
       position: 'relative'
     }}>
       <svg viewBox="0 0 200 120" style={{ width: '100%', maxWidth: '300px' }}>
-        {/* Arco rojo (peligro) */}
+        {/* Arco verde (seguro) - IZQUIERDA */}
         <path
           d="M 20 100 A 80 80 0 0 1 66.67 35"
           fill="none"
@@ -263,7 +280,7 @@ function RiskGauge({ readings }) {
           strokeWidth="20"
           strokeLinecap="round"
         />
-        {/* Arco amarillo (precaución) */}
+        {/* Arco amarillo (precaución) - CENTRO */}
         <path
           d="M 66.67 35 A 80 80 0 0 1 133.33 35"
           fill="none"
@@ -271,7 +288,7 @@ function RiskGauge({ readings }) {
           strokeWidth="20"
           strokeLinecap="round"
         />
-        {/* Arco verde (seguro) */}
+        {/* Arco rojo (peligro) - DERECHA */}
         <path
           d="M 133.33 35 A 80 80 0 0 1 180 100"
           fill="none"
