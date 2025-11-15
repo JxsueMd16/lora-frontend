@@ -146,12 +146,12 @@ export default function Home() {
         <div className="footer-content">
           <span className="footer-label">Backend:</span>
           <a 
-            href="https://lora-backend-9606.onrender.com" 
+            href="https://lora-backend-beta.vercel.app/" 
             target="_blank" 
             rel="noreferrer"
             className="footer-link"
           >
-            lora-backend-9606.onrender.com
+            lora-backend.vercel.app
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6m4-3h6v6m-11 5L21 3"/>
             </svg>
