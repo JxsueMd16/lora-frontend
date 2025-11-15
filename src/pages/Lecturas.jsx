@@ -3,40 +3,67 @@ import { useQuery } from '@tanstack/react-query';
 
 // Iconos SVG
 const DownloadIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-    <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4m4-5l5 5 5-5m-5 5V3"/>
-  </svg>
-);
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      width={20}
+      height={20}     
+    >
+      <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4m4-5l5 5 5-5m-5 5V3"/>
+    </svg>
+  );
 
-const FileIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-    <path d="M13 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V9z"/>
-    <path d="M13 2v7h7"/>
-  </svg>
-);
+  const FileIcon = () => (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      width={24}
+      height={24} 
+    >
+      <path d="M13 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V9z"/>
+      <path d="M13 2v7h7"/>
+    </svg>
+  );
 
-const CalendarIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-    <line x1="16" y1="2" x2="16" y2="6"/>
-    <line x1="8" y1="2" x2="8" y2="6"/>
-    <line x1="3" y1="10" x2="21" y2="10"/>
-  </svg>
-);
+  const CalendarIcon = () => (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      width={32}
+      height={32}     
+    >
+      <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+      <line x1="16" y1="2" x2="16" y2="6"/>
+      <line x1="8" y1="2" x2="8" y2="6"/>
+      <line x1="3" y1="10" x2="21" y2="10"/>
+    </svg>
+  );
 
-const CheckIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
-    <polyline points="20 6 9 17 4 12"/>
-  </svg>
-);
-
+  const CheckIcon = () => (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="3"
+      width={18}
+      height={18}     // 👈
+    >
+      <polyline points="20 6 9 17 4 12"/>
+    </svg>
+  );
 // API
 const API_URL = (import.meta.env.VITE_API_URL || "").replace(/\/$/, "") + "/api";
 
 async function fetchDataRange(startDate, endDate, limit = 10000) {
   const params = new URLSearchParams({
     limit: limit.toString(),
-    onlyValid: 'false'
+    onlyValid: 'true'
   });
   
   if (startDate) params.append('startDate', startDate);
@@ -74,8 +101,7 @@ function exportToCSV(data) {
     'Profundidad (cm)',
     'RSSI (dBm)',
     'SNR (dB)',
-    'Origen',
-    'Valid'
+    'Origen'
   ];
 
   // Filas
@@ -86,8 +112,7 @@ function exportToCSV(data) {
     row.depth_cm?.toFixed(2) || '',
     row.rssi || '',
     row.snr?.toFixed(1) || '',
-    row.source || 'lora',
-    row.valid ? 'Sí' : 'No'
+    row.source || 'lora'
   ]);
 
   // Combinar
@@ -116,7 +141,7 @@ function exportToExcel(data) {
   }
 
   // Crear XML para Excel (formato SpreadsheetML)
-  const headers = ['ID', 'Fecha y Hora', 'Distancia (cm)', 'Profundidad (cm)', 'RSSI (dBm)', 'SNR (dB)', 'Origen', 'Valid'];
+  const headers = ['ID', 'Fecha y Hora', 'Distancia (cm)', 'Profundidad (cm)', 'RSSI (dBm)', 'SNR (dB)', 'Origen'];
   
   let xml = `<?xml version="1.0"?>
 <?mso-application progid="Excel.Sheet"?>
@@ -138,15 +163,14 @@ function exportToExcel(data) {
   // Datos
   data.forEach(row => {
     xml += `<Row>
-     <Cell><Data ss:Type="String">${row._id}</Data></Cell>
-     <Cell><Data ss:Type="String">${new Date(row.receivedAt).toLocaleString('es-ES')}</Data></Cell>
-     <Cell><Data ss:Type="Number">${row.dist_cm?.toFixed(2) || ''}</Data></Cell>
-     <Cell><Data ss:Type="Number">${row.depth_cm?.toFixed(2) || ''}</Data></Cell>
-     <Cell><Data ss:Type="Number">${row.rssi || ''}</Data></Cell>
-     <Cell><Data ss:Type="Number">${row.snr?.toFixed(1) || ''}</Data></Cell>
-     <Cell><Data ss:Type="String">${row.source || 'lora'}</Data></Cell>
-     <Cell><Data ss:Type="String">${row.valid ? 'Sí' : 'No'}</Data></Cell>
-    </Row>`;
+    <Cell><Data ss:Type="String">${row._id}</Data></Cell>
+    <Cell><Data ss:Type="String">${new Date(row.receivedAt).toLocaleString('es-ES')}</Data></Cell>
+    <Cell><Data ss:Type="Number">${row.dist_cm?.toFixed(2) || ''}</Data></Cell>
+    <Cell><Data ss:Type="Number">${row.depth_cm?.toFixed(2) || ''}</Data></Cell>
+    <Cell><Data ss:Type="Number">${row.rssi || ''}</Data></Cell>
+    <Cell><Data ss:Type="Number">${row.snr?.toFixed(1) || ''}</Data></Cell>
+    <Cell><Data ss:Type="String">${row.source || 'lora'}</Data></Cell>
+   </Row>`;   
   });
 
   xml += `</Table>
@@ -412,7 +436,6 @@ export default function Lecturas() {
         <h4 style={styles.infoTitle}>ℹ️ Información</h4>
         <ul style={styles.infoList}>
           <li>Los archivos incluyen: ID, Fecha/Hora, Distancia, Profundidad, RSSI, SNR y origen</li>
-          <li>El límite máximo recomendado es de 50,000 registros para evitar problemas de memoria</li>
           <li>Los datos se descargan directamente desde el navegador sin envío a servidores</li>
           <li>Si no seleccionas fechas, se exportarán los últimos {limit.toLocaleString()} registros</li>
         </ul>

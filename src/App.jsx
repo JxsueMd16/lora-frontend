@@ -5,14 +5,7 @@ import Dashboard from "./pages/Dashboard.jsx";
 import Mapa from "./pages/Mapa.jsx";
 import Alertas from "./pages/alertas.jsx";
 import Clima from "./pages/clima.jsx";
-
-// Placeholder para Lecturas (si aún no existe)
-const Lecturas = () => (
-  <div style={{ padding: "2rem" }}>
-    <h2>Lecturas</h2>
-    <p>Próximamente…</p>
-  </div>
-);
+import Lecturas from "./pages/Lecturas.jsx"; 
 
 export default function App() {
   return (
@@ -21,7 +14,7 @@ export default function App() {
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/mapa" element={<Mapa />} />
       <Route path="/clima" element={<Clima />} />
-      <Route path="/lecturas" element={<Lecturas />} />
+      <Route path="/lecturas" element={<Lecturas />} />  
       <Route path="/alertas" element={<Alertas />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
