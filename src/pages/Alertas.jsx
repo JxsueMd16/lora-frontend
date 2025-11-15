@@ -59,14 +59,14 @@ export default function Alertas() {
   const [sending, setSending] = useState(false);
   const [notification, setNotification] = useState(null);
 
-  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3007';
+  const API_URL = (import.meta.env.VITE_API_URL || 'http://localhost:3007').replace(/\/$/, '');
 
   // Cargar suscriptores
   useEffect(() => {
     fetchSubscribers();
     // Construir URL del bot desde el token
     const token = '8007887698:AAEaWS_yz_-S0K-LGKMxMLZM3rADiP4peno';
-    const botUsername = 'RiverAlertGuatemalaBot'; // Cambiar por el username real de tu bot
+    const botUsername = 'syslora_bot'; // Cambiar por el username real de tu bot
     setBotUrl(`https://t.me/${botUsername}`);
   }, []);
 
@@ -210,7 +210,6 @@ export default function Alertas() {
             <AlertTriangleIcon />
             <div>
               <strong>Nota:</strong> Los umbrales actuales están configurados para una cubeta de prueba de 12cm. 
-              Ajústalos según las características reales del río en producción.
             </div>
           </div>
         </div>

@@ -1,576 +1,734 @@
+/* src/pages/alertas.css */
+
 /* === Variables === */
 .alertas-wrap {
-    --bg-primary: #0a0e27;
-    --bg-secondary: #0f1419;
-    --bg-card: #131a22;
-    --border-color: #263241;
-    --text-primary: #eaeef3;
-    --text-secondary: #9ca3af;
-    --blue: #3b82f6;
-    --green: #10b981;
-    --orange: #f59e0b;
-    --purple: #8b5cf6;
-    --red: #ef4444;
-    --telegram: #0088cc;
+  --bg-primary: #0a0e27;
+  --bg-secondary: #0f1419;
+  --bg-card: #131a22;
+  --border-color: #263241;
+  --text-primary: #eaeef3;
+  --text-secondary: #9ca3af;
+  --blue: #3b82f6;
+  --green: #10b981;
+  --orange: #f59e0b;
+  --purple: #8b5cf6;
+  --red: #ef4444;
+  --telegram: #0088cc;
+}
+
+/* === Layout Principal === */
+.alertas-wrap {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 24px;
+  color: var(--text-primary);
+  background: var(--bg-primary);
+  min-height: 100vh;
+  animation: fade-in 0.5s ease-out;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
   }
-  
-  /* === Layout Principal === */
-  .alertas-wrap {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 24px;
-    color: var(--text-primary);
-    background: var(--bg-primary);
-    min-height: 100vh;
+  to {
+    opacity: 1;
   }
-  
-  /* === Header === */
-  .alertas-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 32px;
-    flex-wrap: wrap;
-    gap: 16px;
+}
+
+/* === Header === */
+.alertas-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+  gap: 16px;
+  animation: fade-in-down 0.6s ease-out;
+}
+
+@keyframes fade-in-down {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
   }
-  
-  .alertas-title {
-    margin: 0;
-    font-size: clamp(2rem, 4vw, 2.5rem);
-    font-weight: 700;
-    background: linear-gradient(135deg, #60a5fa 0%, #f59e0b 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  .alertas-subtitle {
-    margin: 4px 0 0;
-    font-size: 0.95rem;
-    color: var(--text-secondary);
+}
+
+.alertas-title {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 2.5rem);
+  font-weight: 700;
+  background: linear-gradient(135deg, #60a5fa 0%, #f59e0b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.02em;
+}
+
+.alertas-subtitle {
+  margin: 4px 0 0;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+}
+
+/* === Cards === */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 24px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: fade-in-up 0.6s ease-out backwards;
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
-  
-  /* === Cards === */
-  .card {
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: 16px;
-    overflow: hidden;
-    margin-bottom: 24px;
-    transition: all 0.3s;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  .card:hover {
-    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.card:nth-child(2) { animation-delay: 0.1s; }
+.card:nth-child(3) { animation-delay: 0.2s; }
+.card:nth-child(4) { animation-delay: 0.3s; }
+.card:nth-child(5) { animation-delay: 0.4s; }
+
+.card:hover {
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border-color);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.header-with-icon {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.header-with-icon svg {
+  width: 24px;
+  height: 24px;
+  color: var(--blue);
+  transition: transform 0.3s;
+}
+
+.card:hover .header-with-icon svg {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.card-header h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.card-badge {
+  font-size: 0.75rem;
+  padding: 4px 10px;
+  background: rgba(59, 130, 246, 0.15);
+  color: var(--blue);
+  border-radius: 12px;
+  font-weight: 500;
+  transition: all 0.3s;
+}
+
+.card:hover .card-badge {
+  background: rgba(59, 130, 246, 0.25);
+}
+
+.telegram-badge {
+  background: rgba(0, 136, 204, 0.15);
+  color: var(--telegram);
+}
+
+.card:hover .telegram-badge {
+  background: rgba(0, 136, 204, 0.25);
+}
+
+.card-body {
+  padding: 24px;
+}
+
+/* === Configuración de umbrales === */
+.config-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.config-item {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.config-item label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.config-item label svg {
+  width: 18px;
+  height: 18px;
+  color: var(--orange);
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+
+.input-group:focus-within {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  transform: translateY(-1px);
+}
+
+.input-group input {
+  flex: 1;
+  padding: 12px 16px;
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  font-size: 1rem;
+  font-weight: 600;
+  outline: none;
+}
+
+.input-suffix {
+  padding: 12px 16px;
+  color: var(--text-secondary);
+  font-weight: 500;
+  border-left: 1px solid var(--border-color);
+}
+
+.input-hint {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* === Alert Info === */
+.alert-info {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px;
+  background: rgba(245, 158, 11, 0.1);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  border-radius: 8px;
+  color: var(--text-primary);
+}
+
+.alert-info svg {
+  width: 20px;
+  height: 20px;
+  color: var(--orange);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.alert-info strong {
+  color: var(--orange);
+}
+
+/* === Telegram Card === */
+.telegram-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.telegram-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(0, 136, 204, 0.1) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.telegram-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  position: relative;
+  z-index: 1;
+}
+
+.telegram-instructions h4 {
+  margin: 0 0 16px;
+  font-size: 1rem;
+  color: var(--text-primary);
+}
+
+.telegram-instructions ol {
+  margin: 0 0 24px;
+  padding-left: 20px;
+}
+
+.telegram-instructions li {
+  margin-bottom: 8px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.telegram-instructions code {
+  padding: 2px 8px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-size: 0.85rem;
+  color: var(--telegram);
+  font-weight: 600;
+}
+
+.telegram-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 24px;
+  background: linear-gradient(135deg, #0088cc, #00a0e4);
+  color: white;
+  text-decoration: none;
+  border-radius: 12px;
+  font-weight: 600;
+  transition: all 0.3s;
+  box-shadow: 0 4px 12px rgba(0, 136, 204, 0.3);
+}
+
+.telegram-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 136, 204, 0.4);
+}
+
+.telegram-button svg:first-child {
+  width: 24px;
+  height: 24px;
+}
+
+.telegram-button svg:last-child {
+  width: 18px;
+  height: 18px;
+  transition: transform 0.3s;
+}
+
+.telegram-button:hover svg:last-child {
+  transform: translate(2px, -2px);
+}
+
+.unsubscribe-info {
+  margin-top: 16px;
+  padding: 12px;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: 8px;
+}
+
+.unsubscribe-info p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+/* === Test Message === */
+.test-message-section h4 {
+  margin: 0 0 16px;
+  font-size: 1rem;
+  color: var(--text-primary);
+}
+
+.test-textarea {
+  width: 100%;
+  padding: 12px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 0.9rem;
+  resize: vertical;
+  transition: all 0.3s;
+  margin-bottom: 12px;
+}
+
+.test-textarea:focus {
+  outline: none;
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  transform: translateY(-1px);
+}
+
+.test-textarea::placeholder {
+  color: var(--text-secondary);
+  opacity: 0.6;
+}
+
+.send-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, var(--blue), #60a5fa);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.send-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+}
+
+.send-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.send-button svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* === Spinner === */
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* === Suscriptores === */
+.subscribers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.subscriber-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  transition: all 0.3s;
+}
+
+.subscriber-card:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.subscriber-avatar {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--blue), var(--purple));
+  color: white;
+  font-weight: 700;
+  font-size: 1.2rem;
+  border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.subscriber-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.subscriber-name {
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.subscriber-id,
+.subscriber-date {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.subscriber-status {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(16, 185, 129, 0.15);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.subscriber-status svg {
+  width: 16px;
+  height: 16px;
+  color: var(--green);
+}
+
+/* === Empty State === */
+.empty-state {
+  text-align: center;
+  padding: 48px 24px;
+  color: var(--text-secondary);
+}
+
+.empty-state svg {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 16px;
+  opacity: 0.3;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.empty-state h4 {
+  margin: 0 0 8px;
+  color: var(--text-primary);
+  font-size: 1.1rem;
+}
+
+.empty-state p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+/* === Loading State === */
+.loading-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 48px 24px;
+  color: var(--text-secondary);
+}
+
+/* === Info Grid === */
+.info-card {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%);
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 24px;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 8px;
+  transition: all 0.3s;
+}
+
+.info-item:hover {
+  background: rgba(255, 255, 255, 0.04);
+  transform: translateY(-2px);
+}
+
+.info-label {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.info-value {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.status-active {
+  color: var(--green);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.status-active::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  background: var(--green);
+  border-radius: 50%;
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.2); }
+}
+
+/* === Notificación === */
+.notification {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  z-index: 9999;
+  animation: slide-in 0.3s ease-out;
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
   }
-  
-  .card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 16px 20px;
-    border-bottom: 1px solid var(--border-color);
-    background: rgba(255, 255, 255, 0.02);
+  to {
+    transform: translateX(0);
+    opacity: 1;
   }
-  
-  .header-with-icon {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  
-  .header-with-icon svg {
-    width: 24px;
-    height: 24px;
-    color: var(--blue);
-  }
-  
-  .card-header h3 {
-    margin: 0;
-    font-size: 1rem;
-    font-weight: 600;
-  }
-  
-  .card-badge {
-    font-size: 0.75rem;
-    padding: 4px 10px;
-    background: rgba(59, 130, 246, 0.15);
-    color: var(--blue);
-    border-radius: 12px;
-    font-weight: 500;
-  }
-  
-  .telegram-badge {
-    background: rgba(0, 136, 204, 0.15);
-    color: var(--telegram);
-  }
-  
-  .card-body {
-    padding: 24px;
-  }
-  
-  /* === Configuración de umbrales === */
-  .config-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 24px;
-    margin-bottom: 24px;
-  }
-  
-  .config-item {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-  
-  .config-item label {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--text-primary);
-  }
-  
-  .config-item label svg {
-    width: 18px;
-    height: 18px;
-    color: var(--orange);
-  }
-  
-  .input-group {
-    display: flex;
-    align-items: center;
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    overflow: hidden;
-    transition: all 0.3s;
-  }
-  
-  .input-group:focus-within {
-    border-color: var(--blue);
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-  }
-  
-  .input-group input {
-    flex: 1;
-    padding: 12px 16px;
-    background: transparent;
-    border: none;
-    color: var(--text-primary);
-    font-size: 1rem;
-    font-weight: 600;
-    outline: none;
-  }
-  
-  .input-suffix {
-    padding: 12px 16px;
-    color: var(--text-secondary);
-    font-weight: 500;
-    border-left: 1px solid var(--border-color);
-  }
-  
-  .input-hint {
-    font-size: 0.8rem;
-    color: var(--text-secondary);
-    margin: 0;
-  }
-  
-  /* === Alert Info === */
-  .alert-info {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    padding: 16px;
-    background: rgba(245, 158, 11, 0.1);
-    border: 1px solid rgba(245, 158, 11, 0.3);
-    border-radius: 8px;
-    color: var(--text-primary);
-  }
-  
-  .alert-info svg {
-    width: 20px;
-    height: 20px;
-    color: var(--orange);
-    flex-shrink: 0;
-    margin-top: 2px;
-  }
-  
-  .alert-info strong {
-    color: var(--orange);
-  }
-  
-  /* === Telegram Card === */
+}
+
+.notification svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.notification-success {
+  border-color: var(--green);
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, var(--bg-card) 100%);
+}
+
+.notification-success svg {
+  color: var(--green);
+}
+
+.notification-error {
+  border-color: var(--red);
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, var(--bg-card) 100%);
+}
+
+.notification-error svg {
+  color: var(--red);
+}
+
+/* === Responsive === */
+@media (max-width: 1024px) {
   .telegram-info {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 32px;
+    grid-template-columns: 1fr;
   }
-  
-  .telegram-instructions h4 {
-    margin: 0 0 16px;
-    font-size: 1rem;
-    color: var(--text-primary);
-  }
-  
-  .telegram-instructions ol {
-    margin: 0 0 24px;
-    padding-left: 20px;
-  }
-  
-  .telegram-instructions li {
-    margin-bottom: 8px;
-    color: var(--text-secondary);
-    line-height: 1.6;
-  }
-  
-  .telegram-instructions code {
-    padding: 2px 8px;
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-color);
-    border-radius: 4px;
-    font-size: 0.85rem;
-    color: var(--telegram);
-    font-weight: 600;
-  }
-  
-  .telegram-button {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    padding: 14px 24px;
-    background: linear-gradient(135deg, #0088cc, #00a0e4);
-    color: white;
-    text-decoration: none;
-    border-radius: 12px;
-    font-weight: 600;
-    transition: all 0.3s;
-    box-shadow: 0 4px 12px rgba(0, 136, 204, 0.3);
-  }
-  
-  .telegram-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 136, 204, 0.4);
-  }
-  
-  .telegram-button svg:first-child {
-    width: 24px;
-    height: 24px;
-  }
-  
-  .telegram-button svg:last-child {
-    width: 18px;
-    height: 18px;
-  }
-  
-  .unsubscribe-info {
-    margin-top: 16px;
-    padding: 12px;
-    background: rgba(239, 68, 68, 0.1);
-    border: 1px solid rgba(239, 68, 68, 0.3);
-    border-radius: 8px;
-  }
-  
-  .unsubscribe-info p {
-    margin: 0;
-    font-size: 0.85rem;
-    color: var(--text-secondary);
-  }
-  
-  /* === Test Message === */
-  .test-message-section h4 {
-    margin: 0 0 16px;
-    font-size: 1rem;
-    color: var(--text-primary);
-  }
-  
-  .test-textarea {
-    width: 100%;
-    padding: 12px;
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    color: var(--text-primary);
-    font-family: inherit;
-    font-size: 0.9rem;
-    resize: vertical;
-    transition: all 0.3s;
-    margin-bottom: 12px;
-  }
-  
-  .test-textarea:focus {
-    outline: none;
-    border-color: var(--blue);
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-  }
-  
-  .test-textarea::placeholder {
-    color: var(--text-secondary);
-    opacity: 0.6;
-  }
-  
-  .send-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    width: 100%;
-    padding: 12px 24px;
-    background: linear-gradient(135deg, var(--blue), #60a5fa);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-weight: 600;
-    font-size: 0.95rem;
-    cursor: pointer;
-    transition: all 0.3s;
-  }
-  
-  .send-button:hover:not(:disabled) {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
-  }
-  
-  .send-button:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-  
-  .send-button svg {
-    width: 18px;
-    height: 18px;
-  }
-  
-  /* === Spinner === */
-  .spinner {
-    width: 18px;
-    height: 18px;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    border-top-color: white;
-    border-radius: 50%;
-    animation: spin 0.8s linear infinite;
-  }
-  
-  @keyframes spin {
-    to { transform: rotate(360deg); }
-  }
-  
-  /* === Suscriptores === */
-  .subscribers-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 16px;
-  }
-  
-  .subscriber-card {
-    display: flex;
-    align-items: center;
-    gap: 16px;
+}
+
+@media (max-width: 768px) {
+  .alertas-wrap {
     padding: 16px;
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    transition: all 0.3s;
   }
-  
-  .subscriber-card:hover {
-    border-color: rgba(255, 255, 255, 0.2);
-    transform: translateY(-2px);
-  }
-  
-  .subscriber-avatar {
-    width: 48px;
-    height: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, var(--blue), var(--purple));
-    color: white;
-    font-weight: 700;
-    font-size: 1.2rem;
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
-  
-  .subscriber-info {
-    flex: 1;
-    min-width: 0;
-  }
-  
-  .subscriber-name {
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: 4px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-  
-  .subscriber-id,
-  .subscriber-date {
-    font-size: 0.75rem;
-    color: var(--text-secondary);
-  }
-  
-  .subscriber-status {
-    width: 32px;
-    height: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(16, 185, 129, 0.15);
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
-  
-  .subscriber-status svg {
-    width: 16px;
-    height: 16px;
-    color: var(--green);
-  }
-  
-  /* === Empty State === */
-  .empty-state {
-    text-align: center;
-    padding: 48px 24px;
-    color: var(--text-secondary);
-  }
-  
-  .empty-state svg {
-    width: 64px;
-    height: 64px;
-    margin-bottom: 16px;
-    opacity: 0.3;
-  }
-  
-  .empty-state h4 {
-    margin: 0 0 8px;
-    color: var(--text-primary);
-    font-size: 1.1rem;
-  }
-  
-  .empty-state p {
-    margin: 0;
-    font-size: 0.9rem;
-  }
-  
-  /* === Loading State === */
-  .loading-state {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    padding: 48px 24px;
-    color: var(--text-secondary);
-  }
-  
-  /* === Info Grid === */
-  .info-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 24px;
-  }
-  
-  .info-item {
-    display: flex;
+
+  .alertas-header {
     flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .config-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .subscribers-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .notification {
+    left: 16px;
+    right: 16px;
+  }
+
+  .card-header {
+    flex-direction: column;
+    align-items: flex-start;
     gap: 8px;
   }
-  
-  .info-label {
-    font-size: 0.85rem;
-    color: var(--text-secondary);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+}
+
+@media (max-width: 480px) {
+  .alertas-title {
+    font-size: 1.75rem;
   }
-  
-  .info-value {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--text-primary);
+
+  .telegram-button {
+    width: 100%;
+    justify-content: center;
   }
-  
-  .status-active {
-    color: var(--green);
+}
+
+/* === Preferencias de movimiento === */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
-  
-  /* === Notificación === */
-  .notification {
-    position: fixed;
-    top: 24px;
-    right: 24px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 16px 24px;
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-    z-index: 9999;
-    animation: slide-in 0.3s ease-out;
-  }
-  
-  @keyframes slide-in {
-    from {
-      transform: translateX(100%);
-      opacity: 0;
-    }
-    to {
-      transform: translateX(0);
-      opacity: 1;
-    }
-  }
-  
-  .notification svg {
-    width: 20px;
-    height: 20px;
-    flex-shrink: 0;
-  }
-  
-  .notification-success {
-    border-color: var(--green);
-  }
-  
-  .notification-success svg {
-    color: var(--green);
-  }
-  
-  .notification-error {
-    border-color: var(--red);
-  }
-  
-  .notification-error svg {
-    color: var(--red);
-  }
-  
-  /* === Responsive === */
-  @media (max-width: 1024px) {
-    .telegram-info {
-      grid-template-columns: 1fr;
-    }
-  }
-  
-  @media (max-width: 768px) {
-    .alertas-wrap {
-      padding: 16px;
-    }
-  
-    .config-grid {
-      grid-template-columns: 1fr;
-    }
-  
-    .subscribers-grid {
-      grid-template-columns: 1fr;
-    }
-  
-    .info-grid {
-      grid-template-columns: 1fr;
-    }
-  
-    .notification {
-      left: 16px;
-      right: 16px;
-    }
-  }
+}
