@@ -3,7 +3,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import Home from "./pages/Home.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
 import Mapa from "./pages/Mapa.jsx";
-import Alertas from "./pages/alertas.jsx";
+import Alertas from "./pages/Alertas.jsx";
 import Clima from "./pages/clima.jsx";
 import Lecturas from "./pages/Lecturas.jsx"; 
 
